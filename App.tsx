@@ -1,20 +1,74 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+import Home from "./pages/Home";
+import Espisode from "./pages/Espisode";
+import Interest from "./pages/Interest";
+import LoginPage from "./pages/LoginPage";
+import Save from "./pages/Save";
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 export default function App() {
+  function TabNavigator() {
+    return (
+      <Tab.Navigator>
+        <Tab.Screen
+          name="Home"
+          component={Home}
+          options={({ navigation }) => ({
+            // tabBarIcon: ({ color, size }) => (
+            //   // <Icon name="home" color={color} size={size} />
+            // ),
+          })}
+        />
+        <Tab.Screen
+          name="Espisode"
+          component={Espisode}
+          options={({ navigation }) => ({
+            // tabBarIcon: ({ color, size }) => (
+            //   // <Icon name="home" color={color} size={size} />
+            // ),
+          })}
+        />
+        <Tab.Screen
+          name="Saved"
+          component={Save}
+          options={({ navigation }) => ({
+            // tabBarIcon: ({ color, size }) => (
+            //   // <Icon name="home" color={color} size={size} />
+            // ),
+          })}
+        />
+        <Tab.Screen
+          options={({ navigation }) => ({
+            headerShown: false,
+            // tabBarIcon: ({ color, size }) => (
+            //   <Icon name="address-card" color={color} size={size} />
+            // ),
+          })}
+          name="Interest"
+          component={Interest}
+        />
+      </Tab.Navigator>
+    );
+  }
   return (
-    <View style={styles.container}>
-      <Text>Hwllsdfjkho</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="LoginPage">
+        <Stack.Screen
+          name="Root"
+          options={{ headerShown: false }}
+          component={TabNavigator}
+        />
+        <Stack.Screen
+          name="LoginPage"
+          options={{ headerShown: false }}
+          component={LoginPage}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
