@@ -1,6 +1,8 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { TouchableOpacity, Text } from "react-native";
+
 
 import Home from "./pages/Home";
 import Espisode from "./pages/Espisode";
@@ -16,9 +18,22 @@ export default function App() {
     return (
       <Tab.Navigator>
         <Tab.Screen
-          name="Home"
+          name="Now in Android"
           component={Home}
           options={({ navigation }) => ({
+            headerTitleAlign: "center",
+            headerLeft: () => (
+              // Add the headerLeft function for the left button
+              <TouchableOpacity onPress={() => console.log("handle")}>
+                <Text>Back</Text>
+              </TouchableOpacity>
+            ),
+            headerRight: () => (
+              // Add the headerLeft function for the left button
+              <TouchableOpacity onPress={() => console.log("handle")}>
+                <Text>Back</Text>
+              </TouchableOpacity>
+            ),
             // tabBarIcon: ({ color, size }) => (
             //   // <Icon name="home" color={color} size={size} />
             // ),
