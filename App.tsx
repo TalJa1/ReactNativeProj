@@ -19,7 +19,7 @@ export default function App() {
       <Tab.Navigator
         backBehavior="history"
         screenOptions={{
-          tabBarActiveTintColor: "black",
+          tabBarActiveTintColor: "pink",
           tabBarHideOnKeyboard: true,
 
           tabBarStyle: {

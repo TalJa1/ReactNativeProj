@@ -12,10 +12,6 @@ interface User {
   name: string;
 }
 
-interface RenderUserProps {
-  name: string;
-}
-
 const Home = () => {
   const [refreshing, setRefreshing] = useState(false);
 
@@ -57,7 +53,7 @@ const Home = () => {
     },
   ];
 
-  const RenderUser: React.FC<RenderUserProps> = ({ name }) => {
+  const RenderUser: React.FC<User> = ({ name }) => {
     return (
       <View>
         <View style={style.userDisp}>
