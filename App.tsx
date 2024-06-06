@@ -16,7 +16,24 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   function TabNavigator() {
     return (
-      <Tab.Navigator>
+      <Tab.Navigator
+        backBehavior="history"
+        screenOptions={{
+          tabBarActiveTintColor: "black",
+          tabBarIconStyle: {
+            borderRadius: 40,
+
+            borderColor: "#D46A83",
+          },
+          tabBarStyle: {
+            height: 80, // Set your desired height in pixels
+          },
+          tabBarLabelStyle: {
+            borderBottomWidth: 20,
+            borderBottomColor: "white",
+          },
+        }}
+      >
         <Tab.Screen
           name="For you"
           component={Home}
@@ -91,6 +108,6 @@ export default function App() {
 const styles = StyleSheet.create({
   headerButton: {
     paddingHorizontal: 16, // Adjust padding as needed
-    fontSize: 20
+    fontSize: 20,
   },
 });
