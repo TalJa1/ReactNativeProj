@@ -29,31 +29,31 @@ const Home = () => {
 
   const user: User[] = [
     {
-      name: "st",
+      name: "John",
     },
     {
-      name: "st",
+      name: "Lucy",
     },
     {
-      name: "st",
+      name: "Luck",
     },
     {
-      name: "st",
+      name: "Xiao Yan",
     },
     {
-      name: "st",
+      name: "Luccy",
     },
     {
-      name: "st",
+      name: "Luffy",
     },
     {
-      name: "st",
+      name: "Lazy",
     },
     {
-      name: "st",
+      name: "Dic",
     },
     {
-      name: "st",
+      name: "How",
     },
   ];
 
@@ -62,8 +62,12 @@ const Home = () => {
       <View>
         <View style={style.userDisp}>
           <Icon name="user" size={30} solid />
+          <View style={style.plusSty}>
+            <Icon name="plus" />
+          </View>
         </View>
         <Text style={{ textAlign: "center" }}>{name}</Text>
+        <View></View>
       </View>
     );
   };
@@ -129,6 +133,18 @@ const style = StyleSheet.create({
     width: 60,
     height: 60,
     backgroundColor: "#EDDEE8",
+  },
+  plusSty: {
+    position: "absolute",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    right: 0,
+    bottom: 0,
+    borderRadius: 20,
+    width: 15,
+    height: 15,
+    backgroundColor: "white",
   },
 });
 
