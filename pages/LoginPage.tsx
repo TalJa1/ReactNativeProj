@@ -16,8 +16,8 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
 
   const loginCheck = {
-    urname: "tai",
-    pass: "123",
+    urname: "T",
+    pass: "1",
   };
 
   const handleLogin = () => {

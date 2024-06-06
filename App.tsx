@@ -20,16 +20,22 @@ export default function App() {
         backBehavior="history"
         screenOptions={{
           tabBarActiveTintColor: "black",
-          tabBarIconStyle: {
-            borderRadius: 40,
+          tabBarHideOnKeyboard: true,
 
-            borderColor: "#D46A83",
-          },
           tabBarStyle: {
-            height: 80, // Set your desired height in pixels
+            // height: 80, // Set your desired height in pixels
+            display: "flex",
+            position: "absolute",
+            bottom: 20,
+            left: 25,
+            right: 25,
+            elevation: 5,
+            backgroundColor: "white",
+            borderRadius: 30,
+            height: 60,
           },
           tabBarLabelStyle: {
-            borderBottomWidth: 20,
+            borderBottomWidth: 10,
             borderBottomColor: "white",
           },
         }}
@@ -40,12 +46,16 @@ export default function App() {
           options={({ navigation }) => ({
             headerTitleAlign: "center",
             headerTitle: "Now in Android",
+            headerStyle: {
+              backgroundColor: "#ffd6f0",
+            },
             headerLeft: () => (
               // Add the headerLeft function for the left button
               <TouchableOpacity onPress={() => console.log("handle")}>
                 <Icon name="search" style={styles.headerButton} />
               </TouchableOpacity>
             ),
+
             headerRight: () => (
               // Add the headerLeft function for the left button
               <TouchableOpacity onPress={() => console.log("handle")}>
