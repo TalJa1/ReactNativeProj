@@ -4,6 +4,8 @@ import {
   StyleSheet,
   RefreshControl,
   ScrollView,
+  Button,
+  TouchableOpacity,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 
@@ -107,8 +109,19 @@ const Home = () => {
     );
   };
 
+  const groupDataIntoColumns = (data: Item[], itemsPerColumn: number) => {
+    const columns = [];
+    for (let i = 0; i < data.length; i += itemsPerColumn) {
+      columns.push(data.slice(i, i + itemsPerColumn));
+    }
+    return columns;
+  };
+
+  const columns1 = groupDataIntoColumns(DATA, 3);
+
   return (
     <ScrollView
+      contentContainerStyle={{ paddingBottom: 90 }}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
@@ -143,28 +156,57 @@ const Home = () => {
             );
           })}
         </ScrollView>
-        <ScrollView>
-          {DATA.map((value, index) => {
-            return (
-              <View key={index}>
-                <RenderItem name={value.name} icon={value.icon} />
-              </View>
-            );
-          })}
+        <ScrollView horizontal>
+          {columns.map((column, columnIndex) => (
+            <View key={columnIndex} style={style.column}>
+              {column.map((item, index) => (
+                <RenderItem key={index} name={item.name} icon={item.icon} />
+              ))}
+            </View>
+          ))}
         </ScrollView>
       </View>
-      <View style={{ flex: 1 }}></View>
+      <View style={{ flex: 1, marginTop: 10 }}>
+        <TouchableOpacity style={style.button} onPress={() => {}}>
+          <Text style={style.buttonText}>Done</Text>
+        </TouchableOpacity>
+        <View style={style.card}></View>
+      </View>
     </ScrollView>
   );
 };
 
 const style = StyleSheet.create({
+  card: {
+    marginTop: 10,
+    display: "flex",
+    flexDirection: "column",
+    borderRadius: 30,
+    height: 400,
+    backgroundColor: "white",
+  },
+  button: {
+    backgroundColor: "black",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 25, // Border radius for rounded corners
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 16,
+    textAlign: "center",
+  },
+  column: {
+    flexDirection: "column",
+    marginHorizontal: 10,
+  },
   content: {
     display: "flex",
     flexDirection: "row",
     borderRadius: 10,
     backgroundColor: "white",
-    width: "60%",
+    width: "auto",
+    minWidth: 250,
     height: 40,
     marginBottom: 5,
     justifyContent: "space-around",
