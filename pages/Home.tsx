@@ -6,13 +6,22 @@ import {
   ScrollView,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
+
 import { useState, useCallback } from "react";
 
 interface User {
   name: string;
 }
 
+interface Item {
+  name: string;
+  icon: string;
+}
+
+const ITEMS_PER_COLUMN = 3;
+
 const Home = () => {
+  const columns = [];
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = useCallback(() => {
@@ -22,6 +31,15 @@ const Home = () => {
       setRefreshing(false);
     }, 0);
   }, []);
+
+  const DATA: Item[] = [
+    { name: "name", icon: "home" },
+    { name: "name", icon: "user" },
+    { name: "name", icon: "home" },
+    { name: "name", icon: "user" },
+    { name: "name", icon: "home" },
+    { name: "name", icon: "user" },
+  ];
 
   const user: User[] = [
     {
@@ -63,7 +81,28 @@ const Home = () => {
           </View>
         </View>
         <Text style={{ textAlign: "center" }}>{name}</Text>
-        <View></View>
+      </View>
+    );
+  };
+
+  for (let i = 0; i < DATA.length; i += ITEMS_PER_COLUMN) {
+    const columnData = DATA.slice(i, i + ITEMS_PER_COLUMN);
+    columns.push(columnData);
+  }
+
+  const RenderItem: React.FC<Item> = ({ name, icon }) => {
+    return (
+      <View style={style.content}>
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
+          <Icon name={icon} size={20} />
+          <Text style={{ marginLeft: 10 }}>{name}</Text>
+        </View>
+        <Icon name="plus" size={20} />
       </View>
     );
   };
@@ -104,7 +143,15 @@ const Home = () => {
             );
           })}
         </ScrollView>
-        <ScrollView></ScrollView>
+        <ScrollView>
+          {DATA.map((value, index) => {
+            return (
+              <View key={index}>
+                <RenderItem name={value.name} icon={value.icon} />
+              </View>
+            );
+          })}
+        </ScrollView>
       </View>
       <View style={{ flex: 1 }}></View>
     </ScrollView>
@@ -112,6 +159,17 @@ const Home = () => {
 };
 
 const style = StyleSheet.create({
+  content: {
+    display: "flex",
+    flexDirection: "row",
+    borderRadius: 10,
+    backgroundColor: "white",
+    width: "60%",
+    height: 40,
+    marginBottom: 5,
+    justifyContent: "space-around",
+    alignItems: "center",
+  },
   textHeader: {
     textAlign: "center",
     fontWeight: "bold",
