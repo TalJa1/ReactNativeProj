@@ -11,7 +11,6 @@ import Interest from "./pages/Interest";
 import LoginPage from "./pages/LoginPage";
 import Save from "./pages/Save";
 import SearchPage from "./pages/SearchPage";
-import SearchInput from "./pages/SearchInput";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
