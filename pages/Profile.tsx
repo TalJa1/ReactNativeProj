@@ -1,4 +1,4 @@
-import { View, StyleSheet, ScrollView, Text } from "react-native";
+import { View, StyleSheet, ScrollView, Text, Image } from "react-native";
 import React from "react";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import SelectDropdown from "react-native-select-dropdown";
@@ -9,6 +9,10 @@ interface AndroidCard {
 }
 
 interface SelectDrop {
+  title: string;
+}
+
+interface ViewCheck {
   title: string;
 }
 
@@ -34,6 +38,18 @@ const Profile = () => {
     },
     {
       title: "Oldest List",
+    },
+  ];
+
+  const selectView: ViewCheck[] = [
+    {
+      title: "Compact view",
+    },
+    {
+      title: "Normal view",
+    },
+    {
+      title: "Ultra view",
     },
   ];
 
@@ -77,8 +93,9 @@ const Profile = () => {
     return (
       <SelectDropdown
         data={selectDrop}
+        defaultValue={selectView[0].title}
         onSelect={(selectedItem, index) => {
-          console.log(selectedItem, index);
+          // console.log(selectedItem, index);
         }}
         renderButton={(selectedItem, isOpened) => {
           return (
@@ -96,6 +113,49 @@ const Profile = () => {
                 name={isOpened ? "chevron-up" : "chevron-down"}
                 style={styles.dropdownButtonArrowStyle}
               />
+            </View>
+          );
+        }}
+        renderItem={(item, index, isSelected) => {
+          return (
+            <View
+              style={{
+                ...styles.dropdownItemStyle,
+                ...(isSelected && { backgroundColor: "#D2D9DF" }),
+              }}
+            >
+              <Icon name={item.icon} style={styles.dropdownItemIconStyle} />
+              <Text style={styles.dropdownItemTxtStyle}>{item.title}</Text>
+            </View>
+          );
+        }}
+        showsVerticalScrollIndicator={false}
+        dropdownStyle={styles.dropdownMenuStyle}
+      />
+    );
+  };
+
+  const RenderDropdownRight: React.FC = () => {
+    return (
+      <SelectDropdown
+        data={selectView}
+        defaultValue={selectView[0].title}
+        onSelect={(selectedItem, index) => {
+          // console.log(selectedItem, index);
+        }}
+        renderButton={(selectedItem, isOpened) => {
+          return (
+            <View style={styles.dropdownButtonStyleRight}>
+              {selectedItem && (
+                <Icon
+                  name={selectedItem.icon}
+                  style={styles.dropdownButtonIconStyle}
+                />
+              )}
+              <Text style={styles.dropdownButtonTxtStyle}>
+                {(selectedItem && selectedItem.title) || selectView[0].title}
+              </Text>
+              <Icon name="bars" style={styles.dropdownButtonArrowStyle} />
             </View>
           );
         }}
@@ -165,10 +225,17 @@ const Profile = () => {
       </ScrollView>
       <View
         style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
           marginTop: 20,
         }}
       >
         <RenderDropdown />
+        <RenderDropdownRight />
+      </View>
+      <View >
+        
       </View>
     </ScrollView>
   );
@@ -180,6 +247,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  card: {
+    overflow: "hidden",
+    marginTop: 10,
+    display: "flex",
+    flexDirection: "column",
+    borderRadius: 30,
+    height: 400,
+    backgroundColor: "white",
+  },
   userImg: {
     display: "flex",
     justifyContent: "center",
@@ -190,7 +266,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#D3BBB2",
   },
   dropdownButtonStyle: {
-    width: 200,
+    width: 170,
     height: 60,
     borderRadius: 40,
     borderWidth: 1,
@@ -199,10 +275,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 12,
   },
+  dropdownButtonStyleRight: {
+    width: 170,
+    height: 60,
+    borderRadius: 40,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 12,
+  },
   dropdownButtonTxtStyle: {
     flex: 1,
-    fontSize: 18,
-    fontWeight: "500",
+    fontSize: 14,
+    fontWeight: "400",
     color: "#151E26",
   },
   dropdownButtonArrowStyle: {
@@ -226,7 +311,7 @@ const styles = StyleSheet.create({
   },
   dropdownItemTxtStyle: {
     flex: 1,
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: "500",
     color: "#151E26",
   },
