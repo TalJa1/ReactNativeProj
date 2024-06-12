@@ -22,10 +22,6 @@ const SearchPage = () => {
     }
   }, []);
 
-  // React.useEffect(() => {
-  //   console.log(searchQuery);
-  // }, [searchQuery]);
-
   const clearText = () => {
     setValue("");
   };
@@ -36,25 +32,25 @@ const SearchPage = () => {
 
   const ref = React.useRef();
   return (
-    <View style={{ flex: 1 }}>
-      <View style={{ backgroundColor: "#FFE2EF", flex: 1 }}>
-        <View style={styles.container}>
-          <TouchableOpacity onPress={handleBack} style={styles.backIcon}>
-            <Icon name="arrow-left" size={20} color="#999" />
-          </TouchableOpacity>
-          <TextInput
-            ref={focus}
-            style={styles.input}
-            placeholder="Search..."
-            value={value ?? ""}
-            onChangeText={setValue}
-          />
-          <TouchableOpacity onPress={clearText} style={styles.cancelButton}>
-            <Icon name="times-circle" size={20} color="#999" />
-          </TouchableOpacity>
-        </View>
+    <View style={{ flex: 1, backgroundColor: "#FFE2EF" }}>
+      <View style={styles.container}>
+        <TouchableOpacity onPress={handleBack} style={styles.backIcon}>
+          <Icon name="arrow-left" size={20} color="#999" />
+        </TouchableOpacity>
+        <TextInput
+          ref={focus}
+          style={styles.input}
+          placeholder="Search..."
+          value={value ?? ""}
+          onChangeText={setValue}
+        />
+        <TouchableOpacity onPress={clearText} style={styles.cancelButton}>
+          <Icon name="times-circle" size={20} color="#999" />
+        </TouchableOpacity>
       </View>
-      <View></View> 
+      <View style={styles.searchRecent}>
+        <Text>Recent searches</Text>
+      </View>
     </View>
   );
 };
@@ -64,7 +60,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    height: 150,
+    height: 140,
   },
   input: {
     height: 40,
@@ -80,6 +76,9 @@ const styles = StyleSheet.create({
   backIcon: {
     position: "relative",
     right: 20,
+  },
+  searchRecent: {
+    paddingHorizontal: 15,
   },
 });
 
