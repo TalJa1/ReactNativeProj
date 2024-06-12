@@ -3,12 +3,15 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { TouchableOpacity, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import React from "react";
 
 import Home from "./pages/Home";
 import Espisode from "./pages/Espisode";
 import Interest from "./pages/Interest";
 import LoginPage from "./pages/LoginPage";
 import Save from "./pages/Save";
+import SearchPage from "./pages/SearchPage";
+import SearchInput from "./pages/SearchInput";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -51,7 +54,9 @@ export default function App() {
             },
             headerLeft: () => (
               // Add the headerLeft function for the left button
-              <TouchableOpacity onPress={() => console.log("handle search")}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("SearchPage")}
+              >
                 <Icon name="search" style={styles.headerButton} />
               </TouchableOpacity>
             ),
@@ -110,6 +115,20 @@ export default function App() {
           name="LoginPage"
           options={{ headerShown: false }}
           component={LoginPage}
+        />
+        <Stack.Screen
+          name="SearchPage"
+          // options={{ headerShown: false }}
+          options={{
+            headerShown: false,
+            // headerTitle: () => (
+            //   <SearchInput value={searchQuery} onChange={setSearchQuery} />
+            // ),
+            headerStyle: {
+              backgroundColor: "#ffd6f0",
+            },
+          }}
+          component={SearchPage}
         />
       </Stack.Navigator>
     </NavigationContainer>
