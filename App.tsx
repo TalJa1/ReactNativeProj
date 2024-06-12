@@ -11,6 +11,7 @@ import Interest from "./pages/Interest";
 import LoginPage from "./pages/LoginPage";
 import Save from "./pages/Save";
 import SearchPage from "./pages/SearchPage";
+import Profile from "./pages/Profile";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -62,7 +63,9 @@ export default function App() {
 
             headerRight: () => (
               // Add the headerLeft function for the left button
-              <TouchableOpacity onPress={() => console.log("handle")}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("ProfilePage")}
+              >
                 <Icon name="user" style={styles.headerButton} />
               </TouchableOpacity>
             ),
@@ -117,17 +120,24 @@ export default function App() {
         />
         <Stack.Screen
           name="SearchPage"
-          // options={{ headerShown: false }}
           options={{
             headerShown: false,
-            // headerTitle: () => (
-            //   <SearchInput value={searchQuery} onChange={setSearchQuery} />
-            // ),
             headerStyle: {
               backgroundColor: "#ffd6f0",
             },
           }}
           component={SearchPage}
+        />
+        <Stack.Screen
+          name="ProfilePage"
+          options={{
+            headerTitle: "",
+            headerStyle: {
+              backgroundColor: "#ffd6f0",
+            },
+            headerShadowVisible: false,
+          }}
+          component={Profile}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,12 +1,17 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text } from "react-native";
+import React from "react";
 
 const Espisode = () => {
   return (
-    <View>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: "white",
+      }}
+    >
       <Text>Espisode</Text>
     </View>
-  )
-}
+  );
+};
 
-export default Espisode
+export default Espisode;
