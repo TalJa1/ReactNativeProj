@@ -4,7 +4,7 @@ import {
   StyleSheet,
   RefreshControl,
   ScrollView,
-  Button,
+  Image,
   TouchableOpacity,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
@@ -209,10 +209,23 @@ const Home = () => {
         <View style={style.card}>
           <View
             style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
               height: 130,
               backgroundColor: "#073042",
             }}
-          ></View>
+          >
+            <Image
+              style={{
+                width: 100,
+                height: 100,
+              }}
+              source={{
+                uri: "https://pngimg.com/uploads/circle/circle_PNG77.png",
+              }}
+            />
+          </View>
           <View
             style={{
               paddingVertical: 10,
