@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { TouchableOpacity, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 import Home from "./pages/Home";
@@ -51,7 +51,7 @@ export default function App() {
             },
             headerLeft: () => (
               // Add the headerLeft function for the left button
-              <TouchableOpacity onPress={() => console.log("handle")}>
+              <TouchableOpacity onPress={() => console.log("handle search")}>
                 <Icon name="search" style={styles.headerButton} />
               </TouchableOpacity>
             ),
