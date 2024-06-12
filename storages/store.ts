@@ -23,12 +23,26 @@ const initialTopics: Topic[] = [
   { name: "Dramatic", isCheck: false },
 ];
 
-export const saveTopics = async (topics: Topic[]) => {
+// export const saveTopics = async (topics: Topic[]) => {
+//   try {
+//     // console.log("Saving topics:", topics);
+//     await storage.save({
+//       key: "topics",
+//       data: topics,
+//       expires: 1000 * 3600 * 24, // 1 day
+//     });
+//     console.log("Topics saved successfully");
+//   } catch (error) {
+//     console.error("Failed to save topics", error);
+//   }
+// };
+
+export const saveTopics = async () => {
   try {
     // console.log("Saving topics:", topics);
     await storage.save({
       key: "topics",
-      data: topics,
+      data: initialTopics,
       expires: 1000 * 3600 * 24, // 1 day
     });
     console.log("Topics saved successfully");

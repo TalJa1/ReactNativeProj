@@ -38,12 +38,13 @@ const Home = () => {
 
   useEffect(() => {
     const fetchTopics = async () => {
-      console.log("Fetching topics");
+      // console.log("Fetching topics");
       const loadedTopics = await loadTopics();
       if (loadedTopics.length === 0) {
         console.log("No topics found, saving initial topics");
       } else {
         setTopics(loadedTopics);
+        console.log(loadedTopics);
       }
     };
     fetchTopics();
