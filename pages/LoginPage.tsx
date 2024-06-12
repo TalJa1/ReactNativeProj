@@ -35,7 +35,7 @@ const LoginPage = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.logo}>TEST</Text>
+      <Text style={styles.logo}>DEMO APP</Text>
       <View style={styles.inputView}>
         <TextInput
           style={styles.inputText}
