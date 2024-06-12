@@ -2,6 +2,8 @@ import { View, StyleSheet, ScrollView, Text, Image } from "react-native";
 import React from "react";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import SelectDropdown from "react-native-select-dropdown";
+import TopicComponent from "../components/TopicComponent";
+import { loadTopics } from "../storages/store";
 
 interface AndroidCard {
   title: string;
@@ -17,6 +19,20 @@ interface ViewCheck {
 }
 
 const Profile = () => {
+  const [topics, setTopics] = React.useState([]);
+
+  React.useEffect(() => {
+    const fetchTopics = async () => {
+      console.log("Fetching topics");
+      const loadedTopics = await loadTopics();
+      if (loadedTopics.length === 0) {
+        console.log("No topics found, saving initial topics");
+      } else {
+        setTopics(loadedTopics);
+      }
+    };
+    fetchTopics();
+  }, []);
   const cardData: AndroidCard[] = [
     {
       title: "Title",
@@ -234,8 +250,12 @@ const Profile = () => {
         <RenderDropdown />
         <RenderDropdownRight />
       </View>
-      <View >
-        
+      <View
+        style={{
+          marginBottom: 20,
+        }}
+      >
+        <TopicComponent topics={topics} />
       </View>
     </ScrollView>
   );
