@@ -9,7 +9,6 @@ const Espisode = () => {
         backgroundColor: "white",
       }}
     >
-      <Text>Espisode</Text>
     </View>
   );
 };

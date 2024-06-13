@@ -78,6 +78,7 @@ export default function App() {
           name="Espisode"
           component={Espisode}
           options={({ navigation }) => ({
+            headerTitleAlign: "center",
             tabBarIcon: ({ color, size }) => (
               <Icon name="book" color={color} size={size} />
             ),
