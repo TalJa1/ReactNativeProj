@@ -2,7 +2,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { TouchableOpacity, StyleSheet } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/FontAwesome6";
 import React from "react";
 
 import Home from "./pages/Home";
@@ -57,7 +57,7 @@ export default function App() {
               <TouchableOpacity
                 onPress={() => navigation.navigate("SearchPage")}
               >
-                <Icon name="search" style={styles.headerButton} />
+                <Icon name="magnifying-glass" style={styles.headerButton} />
               </TouchableOpacity>
             ),
 
@@ -70,7 +70,7 @@ export default function App() {
               </TouchableOpacity>
             ),
             tabBarIcon: ({ color, size }) => (
-              <Icon name="home" color={color} size={size} />
+              <Icon name="house" color={color} size={size} />
             ),
           })}
         />
@@ -131,13 +131,21 @@ export default function App() {
         />
         <Stack.Screen
           name="ProfilePage"
-          options={{
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <TouchableOpacity onPress={() => navigation.replace("LoginPage")}>
+                <Icon
+                  name="arrow-right-from-bracket"
+                  style={styles.headerButton}
+                />
+              </TouchableOpacity>
+            ),
             headerTitle: "",
             headerStyle: {
               backgroundColor: "#ffd6f0",
             },
             headerShadowVisible: false,
-          }}
+          })}
           component={Profile}
         />
       </Stack.Navigator>
