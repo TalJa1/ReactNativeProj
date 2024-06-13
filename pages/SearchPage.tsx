@@ -4,6 +4,8 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  NativeSyntheticEvent,
+  TextInputSubmitEditingEventData,
 } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -30,6 +32,10 @@ const SearchPage = () => {
     navigation.goBack();
   };
 
+  const handleSearch = () => {
+    console.log(`${value}`);
+  };
+
   const ref = React.useRef();
   return (
     <View style={{ flex: 1, backgroundColor: "#FFE2EF" }}>
@@ -42,6 +48,7 @@ const SearchPage = () => {
           style={styles.input}
           placeholder="Search..."
           value={value ?? ""}
+          onSubmitEditing={handleSearch}
           onChangeText={setValue}
         />
         <TouchableOpacity onPress={clearText} style={styles.cancelButton}>
