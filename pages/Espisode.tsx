@@ -7,6 +7,8 @@ import {
   ScrollView,
 } from "react-native";
 import React from "react";
+import Icon from "react-native-vector-icons/FontAwesome5";
+
 // import Carousel from "react-native-snap-carousel";
 
 const { width: windowWidth, height: windowHeight } = Dimensions.get("window");
@@ -27,7 +29,9 @@ const slideList = Array.from({ length: 5 }).map((_, i) => {
     id: i,
     image: `https://picsum.photos/1440/2842?random=${i}`,
     title: `Title for the movie ${i + 1}`,
-    subtitle: `This is the subtitle ${i + 1}!`,
+    subtitle: `In a near-future Earth ravaged by climate change, a lonely scientist stationed at a remote research facility stumbles upon a mysterious signal that could hold the key to humanity's survival, but it also forces her to confront a devastating truth about her own past. ${
+      i + 1
+    }!`,
   };
 });
 
@@ -49,10 +53,66 @@ const Espisode = () => {
       >
         <Image
           source={{ uri: data.image }}
-          style={{ width: windowWidth * 0.9, height: windowHeight * 0.6 }}
+          style={{
+            width: windowWidth * 0.9,
+            height: windowHeight * 0.6,
+            borderRadius: 20,
+          }}
         ></Image>
         <Text style={{ fontSize: 24 }}>{data.title}</Text>
         {/* <Text style={{ fontSize: 18 }}>{data.subtitle}</Text> */}
+        <View
+          style={{
+            marginLeft: 40,
+            width: windowWidth,
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "flex-start",
+          }}
+        >
+          <Text
+            style={{
+              fontWeight: "700",
+            }}
+          >
+            Description
+          </Text>
+        </View>
+        <View
+          style={{
+            flexDirection: "row",
+            marginHorizontal: 20,
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 15,
+              width: "80%",
+            }}
+          >
+            {data.subtitle}
+          </Text>
+          <View
+            style={{
+              width: "20%",
+              alignItems: "flex-end",
+            }}
+          >
+            <View
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: 40,
+                width: 40,
+                backgroundColor: "#FFB5DA",
+                borderRadius: 20,
+              }}
+            >
+              <Icon name="bookmark" size={20} />
+            </View>
+          </View>
+        </View>
       </View>
     );
   };
