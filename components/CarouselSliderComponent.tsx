@@ -1,13 +1,5 @@
-import {
-  View,
-  Text,
-  Dimensions,
-  FlatList,
-  Image,
-  ScrollView,
-} from "react-native";
+import { View, Text, Dimensions, FlatList, Image } from "react-native";
 import React from "react";
-// import Carousel from "react-native-snap-carousel";
 
 const { width: windowWidth, height: windowHeight } = Dimensions.get("window");
 
@@ -22,21 +14,16 @@ interface SlideList {
   data: Slide;
 }
 
-const slideList = Array.from({ length: 5 }).map((_, i) => {
+const slideList = Array.from({ length: 10 }).map((_, i) => {
   return {
     id: i,
     image: `https://picsum.photos/1440/2842?random=${i}`,
-    title: `Title for the movie ${i + 1}`,
+    title: `This is the title! ${i + 1}`,
     subtitle: `This is the subtitle ${i + 1}!`,
   };
 });
 
-const Espisode = () => {
-  // const MyCarousel = () => {
-  // const renderItem = () => <View></View>;
-  //   return <Carousel data={renderData} renderItem={renderItem} />;
-  // };
-
+const CarouselSliderComponent = () => {
   const Slide: React.FC<SlideList> = ({ data }) => {
     return (
       <View
@@ -52,7 +39,7 @@ const Espisode = () => {
           style={{ width: windowWidth * 0.9, height: windowHeight * 0.6 }}
         ></Image>
         <Text style={{ fontSize: 24 }}>{data.title}</Text>
-        {/* <Text style={{ fontSize: 18 }}>{data.subtitle}</Text> */}
+        <Text style={{ fontSize: 18 }}>{data.subtitle}</Text>
       </View>
     );
   };
@@ -77,6 +64,7 @@ const Espisode = () => {
         setIndex(roundIndex);
       }
     }, []);
+
     const flatListOptimizationProps = {
       initialNumToRender: 0,
       maxToRenderPerBatch: 1,
@@ -95,33 +83,26 @@ const Espisode = () => {
     };
 
     return (
-      <View>
-        <FlatList
-          data={slideList}
-          style={{ flex: 1 }}
-          renderItem={({ item }) => {
-            return <Slide data={item} />;
-          }}
-          pagingEnabled
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          onScroll={onScroll}
-          {...flatListOptimizationProps}
-        />
-      </View>
+      <FlatList
+        data={slideList}
+        style={{ flex: 1 }}
+        renderItem={({ item }) => {
+          return <Slide data={item} />;
+        }}
+        pagingEnabled
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        onScroll={onScroll}
+        {...flatListOptimizationProps}
+      />
     );
   }
 
   return (
-    <ScrollView
-      style={{
-        flex: 1,
-        backgroundColor: "white",
-      }}
-    >
+    <View>
       <Carousel />
-    </ScrollView>
+    </View>
   );
 };
 
-export default Espisode;
+export default CarouselSliderComponent;
