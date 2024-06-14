@@ -37,6 +37,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
+    // saveTopics();
     const fetchTopics = async () => {
       // console.log("Fetching topics");
       const loadedTopics = await loadTopics();
